@@ -1,7 +1,7 @@
 from server import TcpServer
 import adafruit_mpu6050
 import board
-time.sleep(1)
+import time
 
 HOST = '192.168.1.220'
 PORT = 12345
@@ -10,8 +10,8 @@ i2c = board.I2C()
 mpu = adafruit_mpu6050.MPU6050(i2c)
 
 def main():
-    myServer = TcpServer()
-    myServer.connect(HOST, PORT)
+    # myServer = TcpServer()
+    # myServer.connect(HOST, PORT)
 
     msg = b"Hello from server!"
 
