@@ -15,8 +15,9 @@ class TcpClient:
         except ConnectionRefusedError:
             print("Error: server not found")
 
-    def send_data(self, msg, msgLen):
-        msgLenBytes = msgLen.to_bytes(2, byteorder='big')
+    def send_data(self, msg):
+        msgLenBytes = int(len(msg)).to_bytes(2, byteorder='big')
+        msgLen = len(msg)
         self.sock.send(msgLenBytes)
 
         totalsent = 0
@@ -29,8 +30,6 @@ class TcpClient:
     def recv_data(self):
         msgLenBytes = self.sock.recv(2)
         msgLen = int.from_bytes(msgLenBytes, byteorder='big')
-
-        print(msgLen)
 
         chunks = []
         bytes_recd = 0
